@@ -19,6 +19,9 @@
   <!-- AOS Animation Library CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+  <!-- Swiper.js (Touch Slider/Carousel) CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
   <script>
     tailwind.config = {
       theme: {
@@ -28,7 +31,6 @@
           'md': '768px',
           'lg': '1024px',
           'xl': '1280px',
-          '2xl': '1536px',
         },
         extend: {
           fontFamily: {
@@ -48,7 +50,7 @@
   </script>
 
   <style>
-    /* Absolute Layout Lock - Prevents Horizontal Shift & Shaking */
+    /* Absolute Lock — Zero Horizontal Jitter/Shake */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -62,45 +64,44 @@
       position: relative;
     }
 
-    /* Fluid Typography using CSS Clamp for all screen extremes */
+    /* Fluid Scalable Typography */
     .fluid-hero-title {
-      font-size: clamp(1.75rem, 7vw, 4.5rem);
+      font-size: clamp(1.85rem, 6.5vw, 4.5rem);
       line-height: 1.1;
       word-wrap: break-word;
     }
 
     .fluid-section-title {
-      font-size: clamp(1.5rem, 5vw, 2.75rem);
+      font-size: clamp(1.4rem, 4.5vw, 2.75rem);
       line-height: 1.2;
       word-wrap: break-word;
     }
 
     .glass-nav {
-      background: rgba(11, 12, 16, 0.9);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(11, 12, 16, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
 
     .video-overlay {
-      background: linear-gradient(180deg, rgba(11, 12, 16, 0.6) 0%, rgba(11, 12, 16, 0.9) 70%, #0b0c10 100%);
+      background: linear-gradient(180deg, rgba(11, 12, 16, 0.5) 0%, rgba(11, 12, 16, 0.88) 65%, #0b0c10 100%);
     }
 
-    /* Hardware Accelerated Hover/Active States */
-    .touch-card {
-      transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), border-color 0.3s ease;
-      will-change: transform;
+    /* Custom Swiper Pagination Dot Colors */
+    .swiper-pagination-bullet {
+      background: rgba(255, 255, 255, 0.3) !important;
+      width: 8px;
+      height: 8px;
+      transition: all 0.3s ease;
     }
-    @media (hover: hover) {
-      .touch-card:hover {
-        transform: translateY(-6px);
-      }
-    }
-    .touch-card:active {
-      transform: scale(0.98);
+    .swiper-pagination-bullet-active {
+      background: #e0533c !important;
+      width: 24px !important;
+      border-radius: 4px !important;
     }
   </style>
 </head>
-<body class="bg-[#0b0c10] text-gray-200 antialiased selection:bg-brand-500 selection:text-white font-sans">
+<body class="bg-[#0b0c10] text-gray-200 antialiased selection:bg-brand-500 selection:text-white font-sans overflow-x-hidden">
 
   <!-- ================= NAVBAR ================= -->
   <header class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-white/10 transition-all duration-300">
@@ -110,11 +111,12 @@
         doxadome<span class="text-brand-500">.</span>
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Links -->
       <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-gray-300">
         <a href="#about" class="hover:text-brand-500 transition">About</a>
         <a href="#what-we-do" class="hover:text-brand-500 transition">What We Do</a>
         <a href="#events" class="hover:text-brand-500 transition">Events</a>
+        <a href="#slideshow" class="hover:text-brand-500 transition">Moments</a>
         <a href="#stories" class="hover:text-brand-500 transition">Stories</a>
         <a href="#contact" class="hover:text-brand-500 transition">Contact</a>
       </nav>
@@ -125,17 +127,18 @@
         </button>
       </div>
 
-      <!-- Mobile Menu Toggle Button -->
+      <!-- Mobile Menu Button -->
       <button id="menu-btn" aria-label="Toggle navigation menu" class="md:hidden p-2 text-gray-300 hover:text-white focus:outline-none">
         <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
       </button>
     </div>
 
-    <!-- Mobile Menu Drawer -->
+    <!-- Mobile Dropdown -->
     <div id="mobile-menu" class="hidden md:hidden w-full px-5 py-6 bg-[#0b0c10]/98 border-b border-white/10 flex flex-col gap-4 text-center text-sm font-semibold">
       <a href="#about" class="mobile-link text-gray-300 hover:text-brand-500 py-2 border-b border-white/5">About</a>
       <a href="#what-we-do" class="mobile-link text-gray-300 hover:text-brand-500 py-2 border-b border-white/5">What We Do</a>
       <a href="#events" class="mobile-link text-gray-300 hover:text-brand-500 py-2 border-b border-white/5">Events</a>
+      <a href="#slideshow" class="mobile-link text-gray-300 hover:text-brand-500 py-2 border-b border-white/5">Moments</a>
       <a href="#stories" class="mobile-link text-gray-300 hover:text-brand-500 py-2 border-b border-white/5">Stories</a>
       <a href="#contact" class="mobile-link text-gray-300 hover:text-brand-500 py-2 border-b border-white/5">Contact</a>
       <button onclick="openJoinModal()" class="w-full mt-2 bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-full shadow-lg shadow-brand-500/30">
@@ -146,7 +149,7 @@
 
   <!-- ================= HERO SECTION ================= -->
   <section id="hero" class="relative w-full min-h-[100svh] flex items-center justify-center pt-20 pb-12 overflow-hidden">
-    <!-- Video Element -->
+    <!-- Video -->
     <video 
       class="absolute inset-0 w-full h-full object-cover z-0" 
       autoplay 
@@ -165,7 +168,7 @@
     <div class="relative z-20 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center mt-6">
       <div data-aos="fade-down" data-aos-duration="800">
         <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-white/10 text-white border border-white/15 backdrop-blur-md mb-4 uppercase tracking-wider">
-          <i data-lucide="sparkles" class="w-3 h-3 text-brand-500"></i> A Family of Faith
+          <i data-lucide="sparkles" class="w-3 h-3 text-brand-500 animate-spin" style="animation-duration: 8s;"></i> A Family of Faith
         </span>
       </div>
 
@@ -186,7 +189,7 @@
         </a>
       </div>
 
-      <!-- Fluid Stats Counter -->
+      <!-- Animated Stats -->
       <div data-aos="fade-up" data-aos-delay="350" class="grid grid-cols-3 gap-2 max-w-md mx-auto mt-10 sm:mt-14 pt-6 border-t border-white/10 text-center">
         <div>
           <h3 class="text-xl sm:text-3xl font-extrabold text-white"><span class="counter" data-target="500">0</span>+</h3>
@@ -217,7 +220,7 @@
         </p>
 
         <div class="space-y-3.5">
-          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-3.5 touch-card">
+          <div data-aos="fade-up" data-aos-delay="100" class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-3.5 hover:border-brand-500/40 transition duration-300">
             <div class="p-2 rounded-xl bg-brand-500/10 text-brand-500 flex-shrink-0 mt-0.5">
               <i data-lucide="target" class="w-4 h-4 sm:w-5 sm:h-5"></i>
             </div>
@@ -227,7 +230,7 @@
             </div>
           </div>
 
-          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-3.5 touch-card">
+          <div data-aos="fade-up" data-aos-delay="200" class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-3.5 hover:border-amber-400/40 transition duration-300">
             <div class="p-2 rounded-xl bg-amber-400/10 text-amber-400 flex-shrink-0 mt-0.5">
               <i data-lucide="eye" class="w-4 h-4 sm:w-5 sm:h-5"></i>
             </div>
@@ -241,11 +244,11 @@
         <div class="mt-6">
           <p class="text-[11px] uppercase font-bold text-gray-400 mb-2.5 tracking-wider">Core Values</p>
           <div class="flex flex-wrap gap-1.5 sm:gap-2">
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300">Love</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300">Faith</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300">Community</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300">Growth</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300">Authenticity</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300 hover:text-white hover:border-brand-500 transition duration-300">Love</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300 hover:text-white hover:border-brand-500 transition duration-300">Faith</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300 hover:text-white hover:border-brand-500 transition duration-300">Community</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300 hover:text-white hover:border-brand-500 transition duration-300">Growth</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium text-gray-300 hover:text-white hover:border-brand-500 transition duration-300">Authenticity</span>
           </div>
         </div>
       </div>
@@ -270,7 +273,7 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div data-aos="fade-up" data-aos-delay="50" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 touch-card">
+        <div data-aos="fade-up" data-aos-delay="50" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-brand-500/50 transition duration-300">
           <div class="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-500 mb-4">
             <i data-lucide="users" class="w-5 h-5"></i>
           </div>
@@ -278,7 +281,7 @@
           <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Fellowship sessions to connect, share testimonies, and strengthen one another.</p>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="100" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 touch-card">
+        <div data-aos="fade-up" data-aos-delay="100" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-amber-400/50 transition duration-300">
           <div class="w-10 h-10 rounded-xl bg-amber-400/10 flex items-center justify-center text-amber-400 mb-4">
             <i data-lucide="flame" class="w-5 h-5"></i>
           </div>
@@ -286,7 +289,7 @@
           <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Spirit-led worship and deep prayer atmospheres that bring internal renewal.</p>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="150" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 touch-card">
+        <div data-aos="fade-up" data-aos-delay="150" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-400/50 transition duration-300">
           <div class="w-10 h-10 rounded-xl bg-emerald-400/10 flex items-center justify-center text-emerald-400 mb-4">
             <i data-lucide="coffee" class="w-5 h-5"></i>
           </div>
@@ -294,7 +297,7 @@
           <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Bonding meetups, games, and genuine moments turning friends into true family.</p>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="200" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 touch-card">
+        <div data-aos="fade-up" data-aos-delay="200" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-indigo-400/50 transition duration-300">
           <div class="w-10 h-10 rounded-xl bg-indigo-400/10 flex items-center justify-center text-indigo-400 mb-4">
             <i data-lucide="radio" class="w-5 h-5"></i>
           </div>
@@ -302,6 +305,56 @@
           <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">"Feel Friday" and digital spaces sharing music, faith stories, and positive vibes.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= SLIDESHOW / MOMENTS GALLERY ================= -->
+  <section id="slideshow" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
+    <div data-aos="fade-up" class="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+      <span class="text-brand-500 font-semibold text-xs tracking-widest uppercase">Community Moments</span>
+      <h2 class="fluid-section-title font-bold text-white mt-2">Life Inside Doxadome</h2>
+      <p class="text-gray-400 text-xs sm:text-sm mt-2">Swipe through snapshots of our gatherings, hangouts, and events.</p>
+    </div>
+
+    <!-- Swiper Container -->
+    <div data-aos="zoom-in" data-aos-duration="800" class="swiper momentsSwiper rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide relative h-[320px] sm:h-[450px]">
+          <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Worship night" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 sm:p-10">
+            <div>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-500 text-white">Worship Nights</span>
+              <h3 class="text-xl sm:text-2xl font-bold text-white mt-2">Experiencing God's Presence Together</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide relative h-[320px] sm:h-[450px]">
+          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Community hangout" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 sm:p-10">
+            <div>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500 text-black font-bold">Bonding & Games</span>
+              <h3 class="text-xl sm:text-2xl font-bold text-white mt-2">Laughter, Food, and Real Conversations</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide relative h-[320px] sm:h-[450px]">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Anoti stage event" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 sm:p-10">
+            <div>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500 text-white">Stage & Arts</span>
+              <h3 class="text-xl sm:text-2xl font-bold text-white mt-2">Anoti — Faith Expressed Through Stage Plays</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination & Navigation Buttons -->
+      <div class="swiper-pagination"></div>
     </div>
   </section>
 
@@ -313,7 +366,7 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
-      <div data-aos="fade-up" data-aos-delay="100" class="rounded-2xl sm:rounded-3xl bg-white/[0.03] border border-white/10 overflow-hidden flex flex-col justify-between touch-card">
+      <div data-aos="fade-up" data-aos-delay="100" class="rounded-2xl sm:rounded-3xl bg-white/[0.03] border border-white/10 overflow-hidden flex flex-col justify-between hover:border-brand-500/40 transition duration-300">
         <div class="p-6 sm:p-8">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-500/20 text-brand-400 border border-brand-500/30">Monthly Gathering</span>
@@ -328,7 +381,7 @@
         </div>
       </div>
 
-      <div data-aos="fade-up" data-aos-delay="200" class="rounded-2xl sm:rounded-3xl bg-white/[0.03] border border-white/10 overflow-hidden flex flex-col justify-between touch-card">
+      <div data-aos="fade-up" data-aos-delay="200" class="rounded-2xl sm:rounded-3xl bg-white/[0.03] border border-white/10 overflow-hidden flex flex-col justify-between hover:border-amber-400/40 transition duration-300">
         <div class="p-6 sm:p-8">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">Special Play</span>
@@ -354,7 +407,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-        <div data-aos="fade-up" data-aos-delay="100" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 touch-card">
+        <div data-aos="fade-up" data-aos-delay="100" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-brand-500/40 transition duration-300">
           <i data-lucide="quote" class="w-6 h-6 text-brand-500/40 mb-3"></i>
           <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">"Finding Doxadome transformed my journey. Here, nobody walks alone."</p>
           <div class="flex items-center gap-3">
@@ -366,7 +419,7 @@
           </div>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="150" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 touch-card">
+        <div data-aos="fade-up" data-aos-delay="150" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-amber-400/40 transition duration-300">
           <i data-lucide="quote" class="w-6 h-6 text-brand-500/40 mb-3"></i>
           <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">"The hangouts and Feel Friday moments bring clarity and true fellowship."</p>
           <div class="flex items-center gap-3">
@@ -378,7 +431,7 @@
           </div>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="200" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 touch-card">
+        <div data-aos="fade-up" data-aos-delay="200" class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-400/40 transition duration-300">
           <i data-lucide="quote" class="w-6 h-6 text-brand-500/40 mb-3"></i>
           <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">"Safe, authentic, and inspiring. A breath of fresh air to grow among family."</p>
           <div class="flex items-center gap-3">
@@ -424,6 +477,7 @@
           <li><a href="#about" class="hover:text-brand-500">About Us</a></li>
           <li><a href="#what-we-do" class="hover:text-brand-500">What We Do</a></li>
           <li><a href="#events" class="hover:text-brand-500">Events</a></li>
+          <li><a href="#slideshow" class="hover:text-brand-500">Moments</a></li>
           <li><a href="#stories" class="hover:text-brand-500">Stories</a></li>
         </ul>
       </div>
@@ -476,17 +530,37 @@
 
   <!-- ================= SCRIPTS ================= -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
     lucide.createIcons();
+
+    // AOS Animations (Active on all devices, no horizontal shifts)
     AOS.init({
       once: true,
-      duration: 700,
+      duration: 750,
       easing: 'ease-out-cubic',
-      disable: 'mobile' // Prevents mobile performance stutter
+      offset: 40
     });
 
-    // Mobile Menu Navigation
+    // Swiper Slideshow Initialization
+    const swiper = new Swiper('.momentsSwiper', {
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+    });
+
+    // Mobile Navigation Toggle
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -524,7 +598,7 @@
       if (e.target === modal) closeJoinModal();
     });
 
-    // Smooth Number Counter
+    // Smooth Stats Counter
     const counters = document.querySelectorAll('.counter');
     let hasCounted = false;
 
@@ -557,7 +631,7 @@
     window.addEventListener('scroll', runCounters);
     window.addEventListener('load', runCounters);
 
-    // Canvas Particles (Lightweight & Screen Safe)
+    // Canvas Particles
     const canvas = document.getElementById('hero-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -593,7 +667,6 @@
       }
     }
 
-    // Limit particle count on small devices for max performance
     const particleCount = window.innerWidth < 640 ? 15 : 30;
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
