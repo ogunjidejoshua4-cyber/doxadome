@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Doxadome — Faith, Culture & Purpose</title>
+
+  <!-- Browser Tab Icon (Local file from your folder) -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+
+  <title>Doxadome</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +57,6 @@
   </script>
 
   <style>
-    /* Absolute Layout Lock — Zero Horizontal Jitter/Shake */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -66,10 +71,9 @@
       background-color: #07070a;
     }
 
-    /* Fluid Scalable Typography */
     .fluid-hero-title {
-      font-size: clamp(2rem, 7.5vw, 5.5rem);
-      line-height: 1.05;
+      font-size: clamp(2rem, 7vw, 4.8rem);
+      line-height: 1.08;
       word-wrap: break-word;
     }
 
@@ -106,7 +110,19 @@
       box-shadow: 0 0 40px -8px rgba(255, 36, 36, 0.45);
     }
 
-    /* Infinite Marquee */
+    @keyframes heartBeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.3); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.3); }
+      70% { transform: scale(1); }
+    }
+    .animate-heart {
+      display: inline-block;
+      animation: heartBeat 1.4s ease-in-out infinite;
+      transform-origin: center;
+    }
+
     @keyframes marquee {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -133,24 +149,23 @@
 <body class="text-gray-200 antialiased selection:bg-brand-500 selection:text-white font-sans overflow-x-hidden">
 
   <header class="fixed top-3 sm:top-5 left-0 right-0 z-50 px-3 sm:px-6 max-w-7xl mx-auto">
-    <div class="glass-pill rounded-full px-4 sm:px-7 h-14 sm:h-18 flex items-center justify-between shadow-2xl">
-      <a href="#home" class="flex items-center gap-2 text-lg sm:text-2xl font-black tracking-tight text-white">
-        <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-brand-500 animate-ping"></span>
-        DOXADOME<span class="text-brand-500">.</span>
+    <div class="glass-pill rounded-full px-4 sm:px-7 h-16 sm:h-20 flex items-center justify-between shadow-2xl">
+      <a href="#home" class="flex items-center gap-1 text-xl sm:text-2xl font-black tracking-tight text-white group">
+        <span>doxadome</span>
+        <span class="text-brand-500 text-lg sm:text-xl ml-0.5 animate-heart">♥</span>
       </a>
 
       <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-gray-300">
-        <a href="#about" class="hover:text-brand-500 transition">Identity</a>
-        <a href="#pillars" class="hover:text-brand-500 transition">Experience</a>
-        <a href="#gatherings" class="hover:text-brand-500 transition">Gatherings</a>
+        <a href="#about" class="hover:text-brand-500 transition">About Us</a>
+        <a href="#pillars" class="hover:text-brand-500 transition">Hangouts & Events</a>
         <a href="#moments" class="hover:text-brand-500 transition">Moments</a>
         <a href="#stories" class="hover:text-brand-500 transition">Stories</a>
       </nav>
 
       <div class="hidden md:flex items-center">
-        <button onclick="openJoinModal()" class="bg-brand-500 hover:bg-brand-600 text-white text-xs uppercase font-extrabold px-6 py-2.5 rounded-full transition duration-300 shadow-lg shadow-brand-500/30 active:scale-95">
-          Plug In
-        </button>
+        <a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer" class="bg-brand-500 hover:bg-brand-600 text-white text-xs uppercase font-extrabold px-6 py-2.5 rounded-full transition duration-300 shadow-lg shadow-brand-500/30 active:scale-95 flex items-center gap-2">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Linktree
+        </a>
       </div>
 
       <button id="menu-btn" aria-label="Toggle Navigation" class="md:hidden p-2 text-gray-200 hover:text-white focus:outline-none">
@@ -159,46 +174,46 @@
     </div>
 
     <div id="mobile-menu" class="hidden md:hidden mt-2 p-5 bento-card rounded-3xl flex flex-col gap-2 text-center font-bold text-sm shadow-2xl border border-white/10">
-      <a href="#about" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Identity</a>
-      <a href="#pillars" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Experience</a>
-      <a href="#gatherings" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Gatherings</a>
+      <a href="#about" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">About Us</a>
+      <a href="#pillars" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Hangouts & Events</a>
       <a href="#moments" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Moments</a>
       <a href="#stories" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Stories</a>
       
-      <button onclick="handleMobilePlugIn()" class="w-full mt-3 bg-brand-500 hover:bg-brand-600 text-white font-black py-3.5 rounded-2xl uppercase tracking-widest text-xs shadow-lg shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2">
-        <i data-lucide="sparkles" class="w-4 h-4"></i> Plug In Now
-      </button>
+      <a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer" class="w-full mt-3 bg-brand-500 hover:bg-brand-600 text-white font-black py-3.5 rounded-2xl uppercase tracking-widest text-xs shadow-lg shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2">
+        <i data-lucide="external-link" class="w-4 h-4"></i> Linktree
+      </a>
     </div>
   </header>
 
   <section id="home" class="relative w-full min-h-[100svh] flex items-center justify-center pt-24 sm:pt-28 pb-14 px-4 sm:px-6 overflow-hidden">
-    <video class="absolute inset-0 w-full h-full object-cover z-0 filter brightness-[0.42] contrast-110" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop">
+    <video class="absolute inset-0 w-full h-full object-cover z-0 filter brightness-[0.38] contrast-110" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop">
       <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-raised-in-a-concert-or-worship-event-42861-large.mp4" type="video/mp4">
     </video>
 
-    <div class="absolute inset-0 bg-gradient-to-t from-[#07070a] via-[#07070a]/65 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#07070a] via-[#07070a]/70 to-transparent z-10"></div>
     <canvas id="hero-canvas" class="absolute inset-0 z-15 pointer-events-none w-full h-full"></canvas>
 
-    <div class="relative z-20 w-full max-w-5xl mx-auto text-center mt-6 sm:mt-10">
+    <div class="relative z-20 w-full max-w-5xl mx-auto text-center mt-8 sm:mt-12">
       <div data-aos="fade-down" data-aos-duration="800">
-        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest bg-brand-500/10 border border-brand-500/30 text-brand-500 mb-5 backdrop-blur-md">
-          <i data-lucide="flame" class="w-3.5 h-3.5"></i> Lagos & Global Believers
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest bg-brand-500/15 border border-brand-500/35 text-brand-500 mb-5 backdrop-blur-md">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Lagos & Global Believers
         </span>
       </div>
 
       <h1 data-aos="zoom-in" data-aos-duration="900" class="fluid-hero-title font-black text-white tracking-tight mb-5">
-        FAITH. CULTURE. <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-rose-300 to-white">TRANSFORMATION.</span>
+        From <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-rose-400">Faith</span>, 
+        Through <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-brand-500">Love</span>, <br class="hidden sm:inline" />
+        Into <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-brand-500">Purpose</span>.
       </h1>
 
       <p data-aos="fade-up" data-aos-delay="150" class="text-xs sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8 sm:mb-10 font-medium leading-relaxed px-2">
-        Doxadome is not an ordinary gathering. It is an intentional sanctuary where spiritual depth meets authentic family bonds.
+         Ex Fide, Per Amorem, In Propositum.
       </p>
 
       <div data-aos="fade-up" data-aos-delay="250" class="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-xs sm:max-w-md mx-auto">
-        <button onclick="openJoinModal()" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs uppercase tracking-widest shadow-2xl neon-glow transition active:scale-95">
-          Connect With Us
-        </button>
+        <a href="https://www.instagram.com/doxadome_/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs uppercase tracking-widest shadow-2xl neon-glow transition active:scale-95 flex items-center justify-center gap-2">
+          <i data-lucide="instagram" class="w-4 h-4"></i> Connect with us on Instagram
+        </a>
         <a href="#about" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full glass-pill hover:bg-white/10 text-white font-bold text-xs uppercase tracking-widest transition text-center">
           Explore Culture
         </a>
@@ -208,25 +223,25 @@
 
   <div class="py-4 sm:py-5 bg-brand-500 overflow-hidden relative shadow-inner z-20">
     <div class="animate-marquee whitespace-nowrap text-white font-black text-[11px] sm:text-xs md:text-sm uppercase tracking-widest flex items-center gap-6 sm:gap-8">
-      <span>• RADICAL LOVE</span>
+      <span>• FROM FAITH, THROUGH LOVE, INTO PURPOSE</span>
+      <span>• EX FIDE, PER AMOREM, IN PROPOSITUM</span>
       <span>• AUTHENTIC FELLOWSHIP</span>
       <span>• SPIRITUAL DEPTH</span>
-      <span>• COMMUNITY IMPACT</span>
       <span>• WORSHIP CULTURE</span>
-      <span>• CREATIVE ARTS</span>
-      <span>• RADICAL LOVE</span>
+      <span>• COMMUNITY IMPACT</span>
+      <span>• FROM FAITH, THROUGH LOVE, INTO PURPOSE</span>
+      <span>• EX FIDE, PER AMOREM, IN PROPOSITUM</span>
       <span>• AUTHENTIC FELLOWSHIP</span>
       <span>• SPIRITUAL DEPTH</span>
-      <span>• COMMUNITY IMPACT</span>
       <span>• WORSHIP CULTURE</span>
-      <span>• CREATIVE ARTS</span>
+      <span>• COMMUNITY IMPACT</span>
     </div>
   </div>
 
   <section id="about" class="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto">
     <div data-aos="fade-up" class="mb-10 sm:mb-14">
-      <span class="text-brand-500 text-xs font-black uppercase tracking-widest">01 / The Identity</span>
-      <h2 class="fluid-section-title font-black text-white mt-1.5">More than a congregation.<br />A home built on purpose.</h2>
+      <span class="text-brand-500 text-xs font-black uppercase tracking-widest">01 / About Us</span>
+      <h2 class="fluid-section-title font-black text-white mt-1.5">More than a congregation.<br />A family built on purpose.</h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
@@ -237,7 +252,7 @@
           </div>
           <h3 class="text-xl sm:text-3xl font-extrabold text-white mb-3 sm:mb-4">Our Driving Purpose</h3>
           <p class="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl">
-            We are creating a borderless ecosystem of passionate believers rooted in faith, committed to spiritual growth, and dedicated to impacting lives through genuine, life-changing community.
+            We are creating an authentic sanctuary of believers rooted in faith, dedicated to spiritual growth, and committed to impacting lives through genuine, life-transforming fellowship.
           </p>
         </div>
 
@@ -295,7 +310,7 @@
   <section id="pillars" class="py-16 sm:py-24 bg-surface-900 border-y border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div data-aos="fade-up" class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
-        <span class="text-brand-500 text-xs font-black uppercase tracking-widest">02 / What Happens Here</span>
+        <span class="text-brand-500 text-xs font-black uppercase tracking-widest">02 / Hangouts & Events</span>
         <h2 class="fluid-section-title font-black text-white mt-1.5">The Doxadome Rhythm</h2>
       </div>
 
@@ -388,48 +403,9 @@
     </div>
   </section>
 
-  <section id="gatherings" class="py-16 sm:py-24 bg-surface-900 border-t border-white/5 px-4 sm:px-6">
-    <div class="max-w-7xl mx-auto">
-      <div data-aos="fade-up" class="mb-10 sm:mb-12">
-        <span class="text-brand-500 text-xs font-black uppercase tracking-widest">04 / Schedule</span>
-        <h2 class="fluid-section-title font-black text-white mt-1.5">Upcoming Meetups</h2>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-5 sm:gap-6">
-        <div data-aos="fade-up" data-aos-delay="100" class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3.5">
-              <span class="text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full bg-brand-500/20 text-brand-500 border border-brand-500/30 uppercase">Monthly Gathering</span>
-              <span class="text-xs text-gray-400 flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-500"></i> Lagos, Nigeria</span>
-            </div>
-            <h3 class="text-xl sm:text-2xl font-black text-white mb-2">Monthly Community Hangout</h3>
-            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">An evening packed with shared meals, prayer huddles, board games, and authentic conversations.</p>
-          </div>
-          <button onclick="openJoinModal()" class="mt-6 sm:mt-8 w-full py-3.5 rounded-2xl bg-white/5 hover:bg-brand-500 text-white font-extrabold text-xs uppercase tracking-widest transition duration-300">
-            RSVP for Access
-          </button>
-        </div>
-
-        <div data-aos="fade-up" data-aos-delay="150" class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3.5">
-              <span class="text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15 uppercase">Special Production</span>
-              <span class="text-xs text-gray-400 flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-500"></i> Main Stage</span>
-            </div>
-            <h3 class="text-xl sm:text-2xl font-black text-white mb-2">Anoti — The Stage Play</h3>
-            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">A story of hope, resilience, and supernatural faith brought alive by brethren on stage.</p>
-          </div>
-          <button onclick="openJoinModal()" class="mt-6 sm:mt-8 w-full py-3.5 rounded-2xl bg-white/5 hover:bg-brand-500 text-white font-extrabold text-xs uppercase tracking-widest transition duration-300">
-            Get Ticket Alerts
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="stories" class="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto">
     <div data-aos="fade-up" class="text-center max-w-xl mx-auto mb-10 sm:mb-16">
-      <span class="text-brand-500 text-xs font-black uppercase tracking-widest">05 / Testimonies</span>
+      <span class="text-brand-500 text-xs font-black uppercase tracking-widest">04 / Testimonies</span>
       <h2 class="fluid-section-title font-black text-white mt-1.5">Life In The Family</h2>
     </div>
 
@@ -476,15 +452,15 @@
     <div data-aos="zoom-in" class="max-w-6xl mx-auto rounded-3xl bg-gradient-to-r from-brand-900 via-brand-600 to-brand-500 p-6 sm:p-14 text-center text-white relative overflow-hidden shadow-2xl border border-brand-500/40">
       <div class="relative z-10">
         <h2 class="text-2xl sm:text-5xl font-black mb-3.5 tracking-tight">YOUR SEAT IS RESERVED.</h2>
-        <p class="text-white/90 text-xs sm:text-base max-w-xl mx-auto mb-7 font-medium">Follow our journey on Instagram or connect directly into our active Lagos circle.</p>
+        <p class="text-white/90 text-xs sm:text-base max-w-xl mx-auto mb-7 font-medium">Follow our journey on Instagram or connect directly with our active circle.</p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
-          <a href="https://www.instagram.com/doxadome_/" target="_blank" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white text-black font-extrabold text-xs uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition">
+          <a href="https://www.instagram.com/doxadome_/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white text-black font-extrabold text-xs uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition">
             <i data-lucide="instagram" class="w-4 h-4"></i> Follow @doxadome_
           </a>
-          <button onclick="openJoinModal()" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-black/60 text-white font-extrabold text-xs uppercase tracking-widest border border-white/20 hover:bg-black transition">
-            Join WhatsApp Circle
-          </button>
+          <a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-black/60 text-white font-extrabold text-xs uppercase tracking-widest border border-white/20 hover:bg-black transition flex items-center justify-center gap-2">
+            <i data-lucide="external-link" class="w-4 h-4"></i> Visit Linktree
+          </a>
         </div>
       </div>
     </div>
@@ -493,16 +469,19 @@
   <footer class="border-t border-white/5 bg-surface-950 pt-12 sm:pt-16 pb-8 px-4 sm:px-6">
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-white/5">
       <div class="sm:col-span-2">
-        <a href="#" class="text-xl sm:text-2xl font-black text-white">DOXADOME<span class="text-brand-500">.</span></a>
-        <p class="text-gray-400 text-xs sm:text-sm mt-2.5 max-w-sm leading-relaxed">A faith-centered family rooted in unconditional love, spiritual growth, and transformation. Lagos, Nigeria.</p>
+        <a href="#home" class="flex items-center gap-1 text-2xl font-black text-white mb-2">
+          <span>doxadome</span>
+          <span class="text-brand-500 text-lg">♥</span>
+        </a>
+        <p class="text-gray-400 text-xs sm:text-sm max-w-sm leading-relaxed">From Faith, Through Love, Into Purpose. Lagos, Nigeria.</p>
       </div>
 
       <div>
         <h4 class="text-white text-xs font-black uppercase tracking-widest mb-3.5">Navigation</h4>
         <ul class="space-y-2 text-xs text-gray-400 font-medium">
-          <li><a href="#about" class="hover:text-brand-500">Identity</a></li>
-          <li><a href="#pillars" class="hover:text-brand-500">Experience</a></li>
-          <li><a href="#gatherings" class="hover:text-brand-500">Gatherings</a></li>
+          <li><a href="#about" class="hover:text-brand-500">About Us</a></li>
+          <li><a href="#pillars" class="hover:text-brand-500">Hangouts & Events</a></li>
+          <li><a href="#moments" class="hover:text-brand-500">Moments</a></li>
           <li><a href="#stories" class="hover:text-brand-500">Stories</a></li>
         </ul>
       </div>
@@ -512,7 +491,8 @@
         <ul class="space-y-2 text-xs text-gray-400 font-medium">
           <li class="flex items-center gap-2"><i data-lucide="mail" class="w-3.5 h-3.5 text-brand-500"></i> doxadome@gmail.com</li>
           <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-500"></i> Lagos, Nigeria</li>
-          <li class="flex items-center gap-2"><i data-lucide="instagram" class="w-3.5 h-3.5 text-brand-500"></i> @doxadome_</li>
+          <li class="flex items-center gap-2"><a href="https://www.instagram.com/doxadome_/" target="_blank" rel="noopener noreferrer" class="hover:text-white flex items-center gap-2"><i data-lucide="instagram" class="w-3.5 h-3.5 text-brand-500"></i> @doxadome_</a></li>
+          <li class="flex items-center gap-2"><a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer" class="hover:text-white flex items-center gap-2"><i data-lucide="external-link" class="w-3.5 h-3.5 text-brand-500"></i> Linktree</a></li>
         </ul>
       </div>
     </div>
@@ -523,45 +503,12 @@
     </div>
   </footer>
 
-  <div id="join-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-3.5 hidden opacity-0 transition-opacity duration-200">
-    <div class="bento-card border border-white/20 w-full max-w-sm sm:max-w-md rounded-3xl p-5 sm:p-8 relative shadow-2xl">
-      <button onclick="closeJoinModal()" aria-label="Close" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <div class="text-center mb-5">
-        <span class="w-10 h-10 rounded-full bg-brand-500/10 text-brand-500 flex items-center justify-center mx-auto mb-2">
-          <i data-lucide="sparkles" class="w-5 h-5"></i>
-        </span>
-        <h3 class="text-lg sm:text-xl font-black text-white">Join Doxadome</h3>
-        <p class="text-gray-400 text-xs mt-0.5">Plug into our upcoming gatherings & community circle.</p>
-      </div>
-
-      <form onsubmit="handleFormSubmit(event)" class="space-y-3.5">
-        <div>
-          <label class="block text-[10px] sm:text-[11px] uppercase font-bold text-gray-400 mb-1">Full Name</label>
-          <input type="text" required placeholder="e.g. David Ogunleye" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-brand-500" />
-        </div>
-
-        <div>
-          <label class="block text-[10px] sm:text-[11px] uppercase font-bold text-gray-400 mb-1">WhatsApp / Email</label>
-          <input type="text" required placeholder="08012345678 or name@mail.com" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-brand-500" />
-        </div>
-
-        <button type="submit" class="w-full py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs uppercase tracking-widest shadow-lg shadow-brand-500/30 transition mt-2">
-          Plug Me In
-        </button>
-      </form>
-    </div>
-  </div>
-
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
     lucide.createIcons();
 
-    // AOS Animation setup
     AOS.init({
       once: true,
       duration: 700,
@@ -569,7 +516,6 @@
       offset: 30
     });
 
-    // Swiper setup
     const swiper = new Swiper('.momentsSwiper', {
       loop: true,
       autoplay: {
@@ -586,7 +532,6 @@
       },
     });
 
-    // Mobile Menu Navigation Logic
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -601,36 +546,6 @@
       });
     });
 
-    // Modal Control Functions
-    const modal = document.getElementById('join-modal');
-
-    function openJoinModal() {
-      modal.classList.remove('hidden');
-      setTimeout(() => modal.classList.remove('opacity-0'), 10);
-    }
-
-    function closeJoinModal() {
-      modal.classList.add('opacity-0');
-      setTimeout(() => modal.classList.add('hidden'), 200);
-    }
-
-    // Handles the Plug In button click inside mobile navigation drawer
-    function handleMobilePlugIn() {
-      mobileMenu.classList.add('hidden'); // Close menu first
-      openJoinModal(); // Open modal
-    }
-
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      alert('Welcome to the family! We will get in touch shortly.');
-      closeJoinModal();
-    }
-
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) closeJoinModal();
-    });
-
-    // Counter Logic
     const counters = document.querySelectorAll('.counter');
     let hasCounted = false;
 
@@ -663,7 +578,6 @@
     window.addEventListener('scroll', runCounters);
     window.addEventListener('load', runCounters);
 
-    // Dynamic Particle Canvas
     const canvas = document.getElementById('hero-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
