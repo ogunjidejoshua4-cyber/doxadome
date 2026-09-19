@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
@@ -9,18 +10,17 @@
   <link rel="shortcut icon" type="image/png" href="favicon.png" />
   <link rel="apple-touch-icon" href="favicon.png" />
 
-  <title>Doxadome</title>
+  <title>DoxaDome-With Jesus Love</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <script>
@@ -57,13 +57,16 @@
   </script>
 
   <style>
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html, body {
+    html,
+    body {
       width: 100%;
       max-width: 100vw;
       overflow-x: hidden !important;
@@ -110,22 +113,38 @@
       box-shadow: 0 0 40px -8px rgba(255, 36, 36, 0.45);
     }
 
-    /* Template Pill Capsules (Pure Solid Colors) */
+    /* Template Pill Capsules */
     .capsule-pill {
       border-radius: 9999px;
       transition: transform 0.4s ease;
     }
+
     .capsule-pill:hover {
       transform: translateY(-4px);
     }
 
     @keyframes heartBeat {
-      0% { transform: scale(1); }
-      14% { transform: scale(1.3); }
-      28% { transform: scale(1); }
-      42% { transform: scale(1.3); }
-      70% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      14% {
+        transform: scale(1.3);
+      }
+
+      28% {
+        transform: scale(1);
+      }
+
+      42% {
+        transform: scale(1.3);
+      }
+
+      70% {
+        transform: scale(1);
+      }
     }
+
     .animate-heart {
       display: inline-block;
       animation: heartBeat 1.4s ease-in-out infinite;
@@ -133,9 +152,15 @@
     }
 
     @keyframes marquee {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0%);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
     }
+
     .animate-marquee {
       display: flex;
       width: 200%;
@@ -148,6 +173,7 @@
       height: 8px;
       transition: all 0.3s ease;
     }
+
     .swiper-pagination-bullet-active {
       background: #ff2424 !important;
       width: 26px !important;
@@ -155,6 +181,7 @@
     }
   </style>
 </head>
+
 <body class="text-gray-200 antialiased selection:bg-brand-500 selection:text-white font-sans overflow-x-hidden">
 
   <!-- ================= NAVBAR ================= -->
@@ -165,7 +192,7 @@
         <span class="text-brand-500 text-lg sm:text-xl ml-0.5 animate-heart">♥</span>
       </a>
 
-      <!-- Desktop Nav: Renamed to Events, Removed Stories -->
+      <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-bold uppercase tracking-widest text-gray-300">
         <a href="#about" class="hover:text-brand-500 transition">About Us</a>
         <a href="#pillars" class="hover:text-brand-500 transition">Events</a>
@@ -173,68 +200,86 @@
       </nav>
 
       <div class="hidden md:flex items-center">
-        <a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer" class="bg-brand-500 hover:bg-brand-600 text-white text-xs uppercase font-extrabold px-6 py-2.5 rounded-full transition duration-300 shadow-lg shadow-brand-500/30 active:scale-95 flex items-center gap-2">
+        <a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer"
+          class="bg-brand-500 hover:bg-brand-600 text-white text-xs uppercase font-extrabold px-6 py-2.5 rounded-full transition duration-300 shadow-lg shadow-brand-500/30 active:scale-95 flex items-center gap-2">
           <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Linktree
         </a>
       </div>
 
-      <button id="menu-btn" aria-label="Toggle Navigation" class="md:hidden p-2 text-gray-200 hover:text-white focus:outline-none">
+      <button id="menu-btn" aria-label="Toggle Navigation"
+        class="md:hidden p-2 text-gray-200 hover:text-white focus:outline-none">
         <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
       </button>
     </div>
 
-    <!-- Mobile Drawer: Renamed to Events, Removed Stories -->
-    <div id="mobile-menu" class="hidden md:hidden mt-2 p-5 bento-card rounded-3xl flex flex-col gap-2 text-center font-bold text-sm shadow-2xl border border-white/10">
-      <a href="#about" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">About Us</a>
-      <a href="#pillars" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Events</a>
-      <a href="#moments" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Moments</a>
-      
-      <a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer" class="w-full mt-3 bg-brand-500 hover:bg-brand-600 text-white font-black py-3.5 rounded-2xl uppercase tracking-widest text-xs shadow-lg shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2">
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu"
+      class="hidden md:hidden mt-2 p-5 bento-card rounded-3xl flex flex-col gap-2 text-center font-bold text-sm shadow-2xl border border-white/10">
+      <a href="#about" class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">About
+        Us</a>
+      <a href="#pillars"
+        class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Events</a>
+      <a href="#moments"
+        class="mobile-link text-gray-300 hover:text-brand-500 py-2.5 border-b border-white/5">Moments</a>
+
+      <a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer"
+        class="w-full mt-3 bg-brand-500 hover:bg-brand-600 text-white font-black py-3.5 rounded-2xl uppercase tracking-widest text-xs shadow-lg shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2">
         <i data-lucide="external-link" class="w-4 h-4"></i> Linktree
       </a>
     </div>
   </header>
 
-  <!-- ================= HERO SECTION ================= -->
-  <section id="home" class="relative w-full min-h-[100svh] flex items-center pt-24 sm:pt-28 pb-14 px-4 sm:px-6 overflow-hidden">
-    <video class="absolute inset-0 w-full h-full object-cover z-0 filter brightness-[0.38] contrast-110" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop">
-      <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-raised-in-a-concert-or-worship-event-42861-large.mp4" type="video/mp4">
-    </video>
+  <!-- ================= HERO SECTION (NO BACKGROUND IMAGE/VIDEO) ================= -->
+  <section id="home"
+    class="relative w-full min-h-[100svh] flex items-center pt-24 sm:pt-28 pb-14 px-4 sm:px-6 overflow-hidden bg-[#07070a]">
+    <!-- Ambient Glow Lights -->
+    <div
+      class="absolute top-1/4 left-10 w-80 sm:w-96 h-80 sm:h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none">
+    </div>
+    <div
+      class="absolute bottom-10 right-10 w-80 sm:w-96 h-80 sm:h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none">
+    </div>
 
-    <div class="absolute inset-0 bg-gradient-to-t from-[#07070a] via-[#07070a]/70 to-transparent z-10"></div>
     <canvas id="hero-canvas" class="absolute inset-0 z-15 pointer-events-none w-full h-full"></canvas>
 
-    <div class="relative z-20 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-8 sm:mt-12">
-      
-      <!-- Left Hero Text: Original text preserved, 2nd button removed -->
+    <div
+      class="relative z-20 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-8 sm:mt-12">
+
+      <!-- Left Hero Text: "From Faith" and "Purpose" in Red -->
       <div class="lg:col-span-7 text-left relative">
         <div data-aos="fade-down" data-aos-duration="800">
-          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest bg-brand-500/15 border border-brand-500/35 text-brand-500 mb-5 backdrop-blur-md">
+          <span
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest bg-brand-500/15 border border-brand-500/35 text-brand-500 mb-5 backdrop-blur-md">
             <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> 
           </span>
         </div>
 
-        <h1 data-aos="zoom-in" data-aos-duration="900" class="fluid-hero-title font-black text-white tracking-tight mb-5">
-          From <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-rose-400">Faith</span>, 
-          Through <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-brand-500">Love</span>, <br class="hidden sm:inline" />
-          Into <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-brand-500">Purpose</span>.
+        <h1 data-aos="zoom-in" data-aos-duration="900"
+          class="fluid-hero-title font-black text-white tracking-tight mb-5">
+          <span class="text-brand-500">From Faith</span>,
+          Through Love, <br class="hidden sm:inline" />
+          Into <span class="text-brand-500">Purpose</span>.
         </h1>
 
-        <p data-aos="fade-up" data-aos-delay="150" class="text-xs sm:text-base md:text-lg text-gray-300 max-w-2xl mb-8 sm:mb-10 font-medium leading-relaxed px-2">
+        <p data-aos="fade-up" data-aos-delay="150"
+          class="text-xs sm:text-base md:text-lg text-gray-300 max-w-2xl mb-8 sm:mb-10 font-medium leading-relaxed px-2">
           Ex Fide, Per Amorem, In Propositum.
         </p>
 
-        <!-- Only Connect on Instagram Button (Second button removed) -->
+        <!-- Only Connect on Instagram Button -->
         <div data-aos="fade-up" data-aos-delay="250" class="flex items-center">
-          <a href="https://www.instagram.com/doxadome_/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs uppercase tracking-widest shadow-2xl neon-glow transition active:scale-95 flex items-center justify-center gap-2">
+          <a href="https://www.instagram.com/doxadome_/" target="_blank" rel="noopener noreferrer"
+            class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs uppercase tracking-widest shadow-2xl neon-glow transition active:scale-95 flex items-center justify-center gap-2">
             <i data-lucide="instagram" class="w-4 h-4"></i> Connect with us on Instagram
           </a>
         </div>
       </div>
 
-      <!-- Right: Template Solid Color Capsule Arches (No images) -->
-      <div data-aos="fade-left" data-aos-duration="1000" class="lg:col-span-5 relative flex justify-center lg:justify-end">
-        <span class="w-4 h-4 rounded-full bg-amber-400 absolute -top-5 right-16 z-30 shadow-lg shadow-amber-400/40"></span>
+      <!-- Right: Template Solid Color Capsule Arches -->
+      <div data-aos="fade-left" data-aos-duration="1000"
+        class="lg:col-span-5 relative flex justify-center lg:justify-end">
+        <span
+          class="w-4 h-4 rounded-full bg-amber-400 absolute -top-5 right-16 z-30 shadow-lg shadow-amber-400/40"></span>
         <span class="w-3 h-3 rounded-full bg-brand-500 absolute top-1/2 -left-4 z-30 animate-pulse"></span>
         <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 absolute -bottom-4 right-1/4 z-30"></span>
 
@@ -262,7 +307,8 @@
 
   <!-- ================= MARQUEE ================= -->
   <div class="py-4 sm:py-5 bg-brand-500 overflow-hidden relative shadow-inner z-20">
-    <div class="animate-marquee whitespace-nowrap text-white font-black text-[11px] sm:text-xs md:text-sm uppercase tracking-widest flex items-center gap-6 sm:gap-8">
+    <div
+      class="animate-marquee whitespace-nowrap text-white font-black text-[11px] sm:text-xs md:text-sm uppercase tracking-widest flex items-center gap-6 sm:gap-8">
       <span>• FROM FAITH, THROUGH LOVE, INTO PURPOSE</span>
       <span>• EX FIDE, PER AMOREM, IN PROPOSITUM</span>
       <span>• AUTHENTIC FELLOWSHIP</span>
@@ -282,18 +328,22 @@
   <section id="about" class="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto">
     <div data-aos="fade-up" class="mb-10 sm:mb-14">
       <span class="text-brand-500 text-xs font-black uppercase tracking-widest">01 / About Us</span>
-      <h2 class="fluid-section-title font-black text-white mt-1.5">More than a community .<br />A family built on purpose.</h2>
+      <h2 class="fluid-section-title font-black text-white mt-1.5">More than a community .<br />A family built on
+        purpose.</h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
-      <div data-aos="fade-right" data-aos-duration="800" class="md:col-span-8 p-6 sm:p-10 rounded-3xl bento-card flex flex-col justify-between relative overflow-hidden">
+      <div data-aos="fade-right" data-aos-duration="800"
+        class="md:col-span-8 p-6 sm:p-10 rounded-3xl bento-card flex flex-col justify-between relative overflow-hidden">
         <div class="relative z-10">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center mb-5 sm:mb-6">
+          <div
+            class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center mb-5 sm:mb-6">
             <i data-lucide="shield-check" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
           <h3 class="text-xl sm:text-3xl font-extrabold text-white mb-3 sm:mb-4">Our Driving Purpose</h3>
           <p class="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl">
-            We are creating an authentic sanctuary of believers rooted in faith, dedicated to spiritual growth, and committed to impacting lives through genuine, life-transforming fellowship.
+            We are creating an authentic sanctuary of believers rooted in faith, dedicated to spiritual growth, and
+            committed to impacting lives through genuine, life-transforming fellowship.
           </p>
         </div>
 
@@ -313,33 +363,43 @@
         </div>
       </div>
 
-      <div data-aos="fade-left" data-aos-duration="800" class="md:col-span-4 rounded-3xl bento-card p-3 sm:p-4 overflow-hidden relative group min-h-[240px] sm:min-h-[280px]">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover rounded-2xl filter contrast-110 group-hover:scale-105 transition duration-700" alt="Fellowship" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-5 rounded-2xl">
+      <div data-aos="fade-left" data-aos-duration="800"
+        class="md:col-span-4 rounded-3xl bento-card p-3 sm:p-4 overflow-hidden relative group min-h-[240px] sm:min-h-[280px]">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop"
+          class="w-full h-full object-cover rounded-2xl filter contrast-110 group-hover:scale-105 transition duration-700"
+          alt="Fellowship" />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-5 rounded-2xl">
           <p class="text-xs font-black uppercase text-white tracking-wider">Unconditional Love in Action</p>
         </div>
       </div>
 
       <div data-aos="fade-up" class="md:col-span-12 p-6 sm:p-8 rounded-3xl bento-card">
-        <h4 class="text-[11px] sm:text-xs font-black uppercase tracking-widest text-brand-500 mb-5">Core DNA Pillars</h4>
+        <h4 class="text-[11px] sm:text-xs font-black uppercase tracking-widest text-brand-500 mb-5">Core DNA Pillars
+        </h4>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
-          <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center">
+          <div
+            class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center">
             <span class="text-white font-extrabold text-xs sm:text-sm block">LOVE</span>
             <span class="text-[9px] sm:text-[10px] text-gray-400 font-medium">Unconditional Grace</span>
           </div>
-          <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center">
+          <div
+            class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center">
             <span class="text-white font-extrabold text-xs sm:text-sm block">FAITH</span>
             <span class="text-[9px] sm:text-[10px] text-gray-400 font-medium">Rooted Belief</span>
           </div>
-          <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center">
+          <div
+            class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center">
             <span class="text-white font-extrabold text-xs sm:text-sm block">COMMUNITY</span>
             <span class="text-[9px] sm:text-[10px] text-gray-400 font-medium">Zero Isolation</span>
           </div>
-          <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center">
+          <div
+            class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center">
             <span class="text-white font-extrabold text-xs sm:text-sm block">GROWTH</span>
             <span class="text-[9px] sm:text-[10px] text-gray-400 font-medium">Spiritual Elevation</span>
           </div>
-          <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center col-span-2 sm:col-span-1">
+          <div
+            class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-brand-500/40 transition text-center col-span-2 sm:col-span-1">
             <span class="text-white font-extrabold text-xs sm:text-sm block">AUTHENTICITY</span>
             <span class="text-[9px] sm:text-[10px] text-gray-400 font-medium">Real People</span>
           </div>
@@ -357,43 +417,55 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-        <div data-aos="fade-up" data-aos-delay="50" class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between group">
+        <div data-aos="fade-up" data-aos-delay="50"
+          class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between group">
           <div>
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center mb-5">
+            <div
+              class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center mb-5">
               <i data-lucide="flame" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </div>
             <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Faith Gatherings</h3>
-            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Raw fellowship spaces where we unpack the Word, share real testimonies, and grow spiritually.</p>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Raw fellowship spaces where we unpack the Word,
+              share real testimonies, and grow spiritually.</p>
           </div>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="100" class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between group">
+        <div data-aos="fade-up" data-aos-delay="100"
+          class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between group">
           <div>
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-5">
+            <div
+              class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-5">
               <i data-lucide="music" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </div>
             <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Worship & Prayer</h3>
-            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Spirit-filled atmospheres designed to draw you closer to God and reignite your inner clarity.</p>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Spirit-filled atmospheres designed to draw you
+              closer to God and reignite your inner clarity.</p>
           </div>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="150" class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between group">
+        <div data-aos="fade-up" data-aos-delay="150"
+          class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between group">
           <div>
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center mb-5">
+            <div
+              class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center mb-5">
               <i data-lucide="sparkles" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </div>
             <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Hangouts & Bonding</h3>
-            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Good meals, outdoor games, and laughter that convert distant faces into lifelong family.</p>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Good meals, outdoor games, and laughter that
+              convert distant faces into lifelong family.</p>
           </div>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="200" class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between group">
+        <div data-aos="fade-up" data-aos-delay="200"
+          class="p-6 sm:p-8 rounded-3xl bento-card flex flex-col justify-between group">
           <div>
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-5">
+            <div
+              class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-5">
               <i data-lucide="headphones" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </div>
             <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Feel Friday Online</h3>
-            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Digital spaces featuring live playlists, uplifting stories, and weekly creative interactions.</p>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">Digital spaces featuring live playlists,
+              uplifting stories, and weekly creative interactions.</p>
           </div>
         </div>
       </div>
@@ -413,30 +485,42 @@
     <div data-aos="zoom-in" class="swiper momentsSwiper rounded-3xl overflow-hidden bento-card shadow-2xl">
       <div class="swiper-wrapper">
         <div class="swiper-slide relative h-[300px] sm:h-[450px]">
-          <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Worship" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end p-5 sm:p-8">
+          <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop"
+            class="w-full h-full object-cover" alt="Worship" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end p-5 sm:p-8">
             <div>
-              <span class="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest bg-brand-500 text-white">Worship Culture</span>
+              <span
+                class="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest bg-brand-500 text-white">Worship
+                Culture</span>
               <h3 class="text-lg sm:text-3xl font-extrabold text-white mt-1.5">Deep Spiritual Encounter</h3>
             </div>
           </div>
         </div>
 
         <div class="swiper-slide relative h-[300px] sm:h-[450px]">
-          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Hangout" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end p-5 sm:p-8">
+          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200&auto=format&fit=crop"
+            class="w-full h-full object-cover" alt="Hangout" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end p-5 sm:p-8">
             <div>
-              <span class="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest bg-white text-black">Community Gathering</span>
+              <span
+                class="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest bg-white text-black">Community
+                Gathering</span>
               <h3 class="text-lg sm:text-3xl font-extrabold text-white mt-1.5">Laughter & Real Connections</h3>
             </div>
           </div>
         </div>
 
         <div class="swiper-slide relative h-[300px] sm:h-[450px]">
-          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Anoti Stage" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end p-5 sm:p-8">
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop"
+            class="w-full h-full object-cover" alt="Anoti Stage" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end p-5 sm:p-8">
             <div>
-              <span class="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest bg-brand-500 text-white">Theatrical Arts</span>
+              <span
+                class="px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest bg-brand-500 text-white">Theatrical
+                Arts</span>
               <h3 class="text-lg sm:text-3xl font-extrabold text-white mt-1.5">Anoti — Live Stage Experience</h3>
             </div>
           </div>
@@ -446,7 +530,7 @@
     </div>
   </section>
 
-  <!-- ================= FOOTER (Stories and bottom CTA removed) ================= -->
+  <!-- ================= FOOTER ================= -->
   <footer class="border-t border-white/5 bg-surface-950 pt-12 sm:pt-16 pb-8 px-4 sm:px-6">
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-white/5">
       <div class="sm:col-span-2">
@@ -469,18 +553,42 @@
       <div>
         <h4 class="text-white text-xs font-black uppercase tracking-widest mb-3.5">Official Channels</h4>
         <ul class="space-y-2 text-xs text-gray-400 font-medium">
-          <li class="flex items-center gap-2"><i data-lucide="mail" class="w-3.5 h-3.5 text-brand-500"></i> doxadome@gmail.com</li>
-          <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-500"></i> Lagos, Nigeria</li>
-          <li class="flex items-center gap-2"><a href="https://www.instagram.com/doxadome_/" target="_blank" rel="noopener noreferrer" class="hover:text-white flex items-center gap-2"><i data-lucide="instagram" class="w-3.5 h-3.5 text-brand-500"></i> @doxadome_</a></li>
-          <li class="flex items-center gap-2"><a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer" class="hover:text-white flex items-center gap-2"><i data-lucide="external-link" class="w-3.5 h-3.5 text-brand-500"></i> Linktree</a></li>
+          <li class="flex items-center gap-2">
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-brand-500 shrink-0"></i>
+            <span>doxadome@gmail.com</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-500 shrink-0"></i>
+            <span>Lagos, Nigeria</span>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/doxadome_/" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:text-white transition group">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" style="color: #ff2424;"
+                viewBox="0 0 24 24" fill="none" stroke="#ff2424" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+              </svg>
+              <span>@doxadome_</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://linktr.ee/doxadome" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 hover:text-white transition">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-brand-500 shrink-0"></i>
+              <span>Linktree</span>
+            </a>
+          </li>
         </ul>
       </div>
-    </div>
 
-    <div class="max-w-7xl mx-auto mt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-3">
-      <p>&copy; 2026 DOXADOME. All rights reserved.</p>
-      <p>Lagos, Nigeria</p>
-    </div>
+      <div
+        class="max-w-7xl mx-auto mt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-3">
+        <p>&copy; 2026 DOXADOME. All rights reserved.</p>
+        <p>Lagos, Nigeria</p>
+      </div>
   </footer>
 
   <!-- ================= SCRIPTS ================= -->
@@ -534,7 +642,7 @@
       const hero = document.getElementById('about');
       if (!hero) return;
       const rect = hero.getBoundingClientRect();
-      
+
       if (rect.top <= window.innerHeight && !hasCounted) {
         counters.forEach(counter => {
           const target = +counter.getAttribute('data-target');
@@ -610,4 +718,5 @@
     animateParticles();
   </script>
 </body>
+
 </html>
